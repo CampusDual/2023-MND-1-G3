@@ -2,7 +2,7 @@
 	display: flex;
 	height: 400px;
 	width: 100%;
-	border: #ffc847 solid 3px;
+	border: #e69138 solid 3px;
 	border-radius: 15px;
 	overflow: hidden;
 }
@@ -35,13 +35,13 @@
 /* Estilos para el nombre y el correo electrónico */
 .user-name b,
 .user-email mat-icon {
-	color: #ffc847;
+	color: #e69138;
 }
 
 /* Estilos para los botones */
 .o-form-toolbar-button,
 .mat-stroked-button {
-	background-color: #ffc847;
+	background-color: #e69138;
 	color: white;
 	border: none;
 	padding: 10px 20px;
