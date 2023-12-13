@@ -195,6 +195,9 @@ h3 {
 .class-moving {
 	background-color: rgb(202, 144, 95);
 }
+.class-locksmith {
+	background-color: rgb(150, 150, 150);
+}
 
 .filter {
 	margin-top: 15px;

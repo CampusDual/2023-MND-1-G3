@@ -100,6 +100,7 @@ export class AnnouncesHomeComponent implements OnInit, AfterViewInit {
 			CLEANING: "../assets/images/cleaning_services_black_24dp.svg",
 			ANTENIST: "../assets/images/settings_input_antenna_black_24dp.svg",
 			MOVING: "../assets/images/local_shipping_black_24dp.svg",
+			LOCKSMITH: "../assets/images/llave.svg",
 		};
 		for (const announce of event) {
 			if (this.selectedService === null || announce.S_NAME === this.selectedService) {

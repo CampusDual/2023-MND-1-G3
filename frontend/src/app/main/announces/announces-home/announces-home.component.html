@@ -70,7 +70,8 @@
 						'class-technical': list.S_NAME === 'TECHNICAL_SERVICE',
 						'class-cleaning': list.S_NAME === 'CLEANING',
 						'class-antenist': list.S_NAME === 'ANTENIST',
-						'class-moving': list.S_NAME === 'MOVING'
+						'class-moving': list.S_NAME === 'MOVING',
+						'class-locksmith': list.S_NAME === 'LOCKSMITH'
 					}"
 					class="card"
 					(click)="openDetail(list)">
@@ -103,6 +104,10 @@
 							class="cardImage"
 							*ngIf="list.S_NAME === 'MOVING'"
 							src="../../../assets/images/moving_img.png" />
+						<img
+							class="cardImage"
+							*ngIf="list.S_NAME === 'LOCKSMITH'"
+							src="../../../assets/images/locksmith_img.png" />
 						<h3>{{ list.A_TITLE }}</h3>
 						<div class="cardInfo">
 							<div class="distance">
@@ -130,6 +135,9 @@
 								</span>
 								<span *ngIf="list.S_NAME === 'MOVING'" class="material-symbols-outlined">
 									local_shipping
+								</span>
+								<span *ngIf="list.S_NAME === 'LOCKSMITH'" class="material-symbols-outlined">
+									key
 								</span>
 								<p>{{ list.S_NAME | oTranslate }}</p>
 							</div>
