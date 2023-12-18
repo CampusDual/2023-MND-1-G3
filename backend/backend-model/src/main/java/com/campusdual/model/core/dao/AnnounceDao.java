@@ -17,4 +17,6 @@ public class AnnounceDao extends OntimizeJdbcDaoSupport {
     public static final String AACTIVE = "A_ACTIVE";
     public static final String ALATITUDE = "A_LATITUDE";
     public static final String ALONGITUDE = "A_LONGITUDE";
+    public static final String ASTARTHOUR = "A_START_HOUR";
+    public static final String AFINNISHHOUR = "A_FINNISH_HOUR";
 }

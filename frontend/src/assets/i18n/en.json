@@ -23,6 +23,8 @@
 	"A_TITLE": "Service title",
 	"A_DESCRIPTION": "Service description",
 	"A_ACTIVE": "Visible announce",
+	"A_START_HOUR": "Start hour",
+	"A_FINNISH_HOUR": "Finnish hour",
 	"S_NAME": "Category",
 	"MAILBOX": "Mailbox",
 	"U_EMITTER": "Client",

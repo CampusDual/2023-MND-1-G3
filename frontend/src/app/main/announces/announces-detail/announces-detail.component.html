@@ -4,6 +4,14 @@
 			<div fxLayout="row" fxLayoutAlign="center" fxFlex="100">
 				<span class="announce-title">{{ data.A_TITLE }}</span>
 			</div>
+			<div fxLayout="column" fxLayoutAlign="center center" fxFlex="25">
+				<mat-divider></mat-divider>
+				<span class="material-symbols-outlined">account_circle</span>
+				<span class="alias">
+					<i>{{ data.USER_ }}</i>
+				</span>
+				<mat-divider></mat-divider>
+			</div>
 			<div fxLayout="row" fxLayoutAlign="center" class="description">
 				<span class="announce-description">{{ data.A_DESCRIPTION }}</span>
 			</div>
@@ -30,21 +38,20 @@
 					layer-id="location_marker"
 					[layer-center]="getPositionGPS()"></o-map-layer>
 			</o-map>
-			<div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="24px" class="info">
-				<div fxLayout="column" fxLayoutAlign="center center" fxFlex="40">
-					<mat-divider></mat-divider>
-					<span class="material-symbols-outlined">account_circle</span>
-					<span class="alias">
-						<i>{{ data.USER_ }}</i>
+			<div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="50px" class="info">
+				<div fxLayout="column" fxLayoutAlign="center center" fxFlex="50" class="hours">
+					<span class="material-symbols-outlined">schedule</span>
+					<span>
+						{{ data.A_START_HOUR | date : "HH:mm" }} - {{ data.A_FINNISH_HOUR | date : "HH:mm" }}
 					</span>
-					<mat-divider></mat-divider>
 				</div>
-				<div fxLayout="column" fxLayoutAlign="center center" fxFlex="40" class="user-email">
+				<div fxLayout="column" fxLayoutAlign="center center" fxFlex="50" class="user-email">
 					<span class="material-symbols-outlined">mail</span>
 					<span>
 						{{ data.EMAIL }}
 					</span>
 				</div>
+				
 			</div>
 		</div>
 	</div>

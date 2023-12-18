@@ -182,4 +182,14 @@ body {
 	font-family: "Arial", sans-serif;
 	background-color: #f4f4f4;
 	margin: 20px;
+
+}
+#starthour {
+	float: left;
+	width: 45%;
+}
+
+#finnishhour {
+	float: right;
+	width: 45%;
 }

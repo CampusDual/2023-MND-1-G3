@@ -45,3 +45,13 @@
 .marker {
 	z-index: 2;
 }
+
+#starthour {
+	float: left;
+	width: 45%;
+}
+
+#finnishhour {
+	float: right;
+	width: 45%;
+}

@@ -72,12 +72,15 @@
 
 .info {
 	margin-top: 20px;
-	margin-right: 70px;
+	margin-right: 20px;
 }
 
 .mat-form-field-infix {
 	background-color: #cea139 !important;
 	resize: none;
+}
+.hours{
+	float: right;
 }
 
 /* Estilos para la responsividad */
