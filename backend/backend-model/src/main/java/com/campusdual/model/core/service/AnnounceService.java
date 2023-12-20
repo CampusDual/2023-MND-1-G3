@@ -95,11 +95,27 @@ public class AnnounceService implements IAnnounceService {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         Map<String, Object> userKeyMap = new HashMap<>((Map<String, Object>) attrMap);
         userKeyMap.put("USER_",authentication.getName());
+        Object objStart = userKeyMap.remove("A_START_HOUR");
+        Object objFinish = userKeyMap.remove("A_FINISH_HOUR");
+        String HHmmssStart = objStart.toString().substring(11,19);
+        String HHmmssFinish = objFinish.toString().substring(11,19);
+        userKeyMap.put("A_START_HOUR",HHmmssStart);
+        userKeyMap.put("A_FINISH_HOUR",HHmmssFinish);
         return this.daoHelper.insert(announceDao, userKeyMap);
     }
 
     public EntityResult announceUpdate(Map<?, ?> attrMap, Map<?, ?> keyMap) {
-        return this.daoHelper.update(announceDao, attrMap, keyMap);
+        Map<String, Object> userKeyMap = new HashMap<>((Map<String, Object>) attrMap);
+        if (attrMap.containsKey("A_START_HOUR")){
+            Object objStart = attrMap.remove("A_START_HOUR");
+            String HHmmssStart = objStart.toString().substring(11,19);
+            userKeyMap.put("A_START_HOUR",HHmmssStart);
+        }
+        if (attrMap.containsKey("A_FINISH_HOUR")){
+            Object objFinish = userKeyMap.remove("A_FINISH_HOUR");
+            String HHmmssFinish = objFinish.toString().substring(11,19);
+            userKeyMap.put("A_FINISH_HOUR",HHmmssFinish);}
+        return this.daoHelper.update(announceDao, userKeyMap, keyMap);
     }
 
     public EntityResult announceDelete(Map<?, ?> keyMap) {

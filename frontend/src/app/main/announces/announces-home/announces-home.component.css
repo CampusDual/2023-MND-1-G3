@@ -205,3 +205,12 @@ h3 {
 	align-items: center;
 	gap: 20px;
 }
+
+.cleanfilter{
+	color: grey;
+}
+
+.cleanfilter:hover {
+	background-color: #e69138;
+	color: white;
+}

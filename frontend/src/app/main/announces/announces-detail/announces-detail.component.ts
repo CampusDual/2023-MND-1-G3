@@ -96,4 +96,10 @@ export class AnnouncesDetailComponent implements OnInit {
 			this.omap.ngOnDestroy();
 		}
 	}
+	
+	getFormattedTime(time: string): string {
+		// Formatear el tiempo para mostrar solo horas y minutos
+		const [hours, minutes] = time.split(':');
+		return `${hours}:${minutes}`;
+	  }
 }

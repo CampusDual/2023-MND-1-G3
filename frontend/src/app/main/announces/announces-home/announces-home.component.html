@@ -31,12 +31,28 @@
 				searchable="yes"
 				null-selection-label="{{ 'SHOW_ALL' | oTranslate }}"
 				read-only="false"></o-combo>
+			<!--<o-hour-input
+				#hour
+				attr="hour"
+				label="HOUR"
+				read-only="no"
+				required="no"
+				value-type="string"
+			></o-hour-input>
+			<o-button
+				class="cleanfilter"
+				attr="clear"
+				[oFilterBuilderClear]="filterBuilder"
+				type="ICON"
+				icon="filter_alt_off"
+				label=""
+			></o-button>-->
 			<o-filter-builder
 				#filterBuilder
 				attr="thefilter"
 				[target]="announcesGrid"
 				query-on-change="yes"
-				filters="announceCombo:announceCombo"
+				filters="announceCombo:announceCombo;hour:hour"
 				query-on-change-delay="500"
 				[expression-builder]="createFilter"></o-filter-builder>
 		</div>
@@ -46,11 +62,11 @@
 			service="announces"
 			entity="announceAll"
 			keys="A_ID"
-			columns="A_ID;S_NAME;A_TITLE;A_DESCRIPTION;NAME;SURNAME;USER_;EMAIL;A_LATITUDE;A_LONGITUDE;A_START_HOUR;A_FINNISH_HOUR"
+			columns="A_ID;S_NAME;A_TITLE;A_DESCRIPTION;NAME;SURNAME;USER_;EMAIL;A_LATITUDE;A_LONGITUDE;A_START_HOUR;A_FINISH_HOUR"
 			query-rows="8"
 			pagination-controls="no"
 			orderable="yes"
-			sortable-columns="DISTANCE;DISTANCE:DESC;S_NAME:DESC;S_NAME;USER_:DESC;USER_"
+			sortable-columns="DISTANCE;DISTANCE:DESC;S_NAME:DESC;S_NAME;USER_:DESC;USER_;A_START_HOUR;A_START_HOUR:DESC,A_FINISH_HOUR;A_FINISH_HOUR:DESC"
 			quick-filter-appearance="field"
 			show-page-size="yes"
 			quick-filter="yes"

@@ -24,7 +24,7 @@
 	"A_DESCRIPTION": "Descripción de servicio",
 	"A_ACTIVE": "Anuncio visible",
 	"A_START_HOUR": "Hora de inicio",
-	"A_FINNISH_HOUR": "Hora de cierre",
+	"A_FINISH_HOUR": "Hora de cierre",
 	"S_NAME": "Categoría",
 	"MAILBOX": "Buzón",
 	"U_EMITTER": "Cliente",
@@ -107,5 +107,6 @@
 	"SHOW_ALL": "Mostrar todos",
 	"CATEGORYSELECT": "Selecione una categoría",
 	"COUNT": "Numero de trabajos finalizados",
-	"TOTAL": "Total de ingresos"
+	"TOTAL": "Total de ingresos",
+	"HOUR": "Hora"
 }

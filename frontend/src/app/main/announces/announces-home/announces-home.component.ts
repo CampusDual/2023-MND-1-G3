@@ -13,6 +13,7 @@ import * as L from "leaflet";
 import { OMapComponent } from "ontimize-web-ngx-map";
 import { getLoggedUser } from "src/app/shared/utils";
 import { Observable, of } from "rxjs";
+import { AnnouncesModule } from "../announces.module";
 
 @Component({
 	selector: "app-announces-home",
@@ -85,7 +86,7 @@ export class AnnouncesHomeComponent implements OnInit, AfterViewInit {
 	public openDetail(data: any): void {
 		this.dialog.open(AnnouncesDetailComponent, {
 			height: "660px",
-			width: "1100px",
+			width: "1500px",
 			data: data,
 		});
 	}
@@ -132,7 +133,21 @@ export class AnnouncesHomeComponent implements OnInit, AfterViewInit {
 				if (fil.attr === "announceCombo") {
 					filters.push(FilterExpressionUtils.buildExpressionEquals("S_NAME", fil.value));
 				}
-			}
+				if (fil.attr === "hour") {
+					const filvalue = fil.value + 1;
+					/*if (FilterExpressionUtils.buildExpressionMoreEqual("A_START_HOUR", "A_FINISH_HOUR")){
+						if (FilterExpressionUtils.buildExpressionLess("A_START_HOUR", fil.value) && FilterExpressionUtils.buildExpressionLess("A_FINISH_HOUR", fil.value)){
+							filters.push(FilterExpressionUtils.buildExpressionLessEqual("A_START_HOUR", fil.value));
+							filters.push(FilterExpressionUtils.buildExpressionLessEqual("A_FINISH_HOUR", fil.value));
+						} else if (FilterExpressionUtils.buildExpressionMore("A_START_HOUR", fil.value) && FilterExpressionUtils.buildExpressionMore("A_FINISH_HOUR", fil.value)){
+							filters.push(FilterExpressionUtils.buildExpressionMoreEqual("A_START_HOUR", fil.value));
+							filters.push(FilterExpressionUtils.buildExpressionMoreEqual("A_FINISH_HOUR", fil.value));
+						}
+					} else {*/
+						filters.push(FilterExpressionUtils.buildExpressionLessEqual("A_START_HOUR", filvalue));
+						filters.push(FilterExpressionUtils.buildExpressionMoreEqual("A_FINISH_HOUR", fil.value));/*}*/
+				}
+			} 
 		});
 
 		if (filters.length > 0) {
