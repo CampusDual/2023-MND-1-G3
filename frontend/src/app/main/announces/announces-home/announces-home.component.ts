@@ -171,4 +171,9 @@ export class AnnouncesHomeComponent implements OnInit, AfterViewInit {
 			return location;
 		}
 	}
+	getFormattedTime(time: string): string {
+		// Formatear el tiempo para mostrar solo horas y minutos
+		const [hours, minutes] = time.split(':');
+		return `${hours}:${minutes}`;
+	  }
 }

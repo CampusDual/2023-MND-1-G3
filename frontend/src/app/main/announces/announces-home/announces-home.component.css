@@ -84,24 +84,44 @@
 	font-weight: 700;
 }
 
+
 .card .main .cardInfo .service .material-symbols-outlined {
 	margin: 0.5rem;
 	margin-bottom: 0.4rem;
 }
 
-.card .main .creator {
+.card .main .moreInfo {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.card .main .moreInfo .hours {
+	display: flex;
+	align-items: center;
+	color: #000000;
+	font-weight: 700;
+	font-size: large;
+}
+
+.card .main .moreInfo .hours .material-symbols-outlined {
+	margin: 0.5rem;
+	margin-bottom: 0.4rem;
+}
+
+.card .main .moreInfo .creator {
 	display: flex;
 	align-items: center;
 	margin-top: 0.2rem;
 	margin-bottom: -0.3rem;
 }
 
-.card .main .creator .material-symbols-outlined {
+.card .main .moreInfo .creator .material-symbols-outlined {
 	color: #131313;
 	text-decoration: none;
 }
 
-.card .main .creator .wrapper {
+.card .main .moreInfo .creator .wrapper {
 	display: flex;
 	align-items: center;
 	border: 1px solid #ffffff;
@@ -112,7 +132,7 @@
 	box-shadow: inset 0 0 0 4px #000000aa;
 }
 
-.card .main .creator .wrapper img {
+.card .main .moreInfo .creator .wrapper img {
 	border-radius: 100%;
 	border: 1px solid #ffffff;
 	width: 2rem;

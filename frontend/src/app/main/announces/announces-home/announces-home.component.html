@@ -66,7 +66,7 @@
 			query-rows="8"
 			pagination-controls="no"
 			orderable="yes"
-			sortable-columns="DISTANCE;DISTANCE:DESC;S_NAME:DESC;S_NAME;USER_:DESC;USER_;A_START_HOUR;A_START_HOUR:DESC,A_FINISH_HOUR;A_FINISH_HOUR:DESC"
+			sortable-columns="DISTANCE;DISTANCE:DESC;S_NAME:DESC;S_NAME;USER_:DESC;USER_;A_START_HOUR;A_START_HOUR:DESC;A_FINISH_HOUR:DESC;A_FINISH_HOUR"
 			quick-filter-appearance="field"
 			show-page-size="yes"
 			quick-filter="yes"
@@ -159,12 +159,18 @@
 							</div>
 						</div>
 						<hr />
-						<div class="creator">
-							<span class="material-symbols-outlined">account_circle</span>
-							<p>
-								<ins>{{ "CREATION_OF" | oTranslate }}</ins>
+						<div class="moreInfo">
+							<div class="creator">
+								<!--<ins>{{ "CREATION_OF" | oTranslate }}</ins>-->
+								<span class="material-symbols-outlined">account_circle</span>
 								<span class="name-creator">{{ list.USER_ }}</span>
-							</p>
+							</div>
+							<div class="hours">
+								<span class="material-symbols-outlined">schedule</span>
+								<span>
+									{{ getFormattedTime(list.A_START_HOUR) }} - {{ getFormattedTime(list.A_FINISH_HOUR) }}
+								</span>
+							</div>
 						</div>
 					</div>
 				</div>
