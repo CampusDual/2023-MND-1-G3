@@ -101,7 +101,7 @@ export class AnnouncesHomeComponent implements OnInit, AfterViewInit {
 			CLEANING: "../assets/images/cleaning_services_black_24dp.svg",
 			ANTENIST: "../assets/images/settings_input_antenna_black_24dp.svg",
 			MOVING: "../assets/images/local_shipping_black_24dp.svg",
-			LOCKSMITH: "../assets/images/llave.svg",
+			LOCKSMITH: "../assets/images/key.svg",
 		};
 		for (const announce of event) {
 			if (this.selectedService === null || announce.S_NAME === this.selectedService) {
@@ -128,26 +128,61 @@ export class AnnouncesHomeComponent implements OnInit, AfterViewInit {
 	}
 	createFilter(values: Array<{ attr; value }>): Expression {
 		let filters: Array<Expression> = [];
+		let hourfilters: Array<Expression> = [];
+		let dayfilters: Array<Expression> = [];
+		let nightbeforefilters: Array<Expression> = [];
+		let nightafterfilters: Array<Expression> = [];
+		let nightfilters: Array<Expression> = [];
+		let hour;
+		let day;
+		let nightbefore;
+		let nightafter;
+		let night;
 		values.forEach((fil) => {
 			if (fil.value) {
 				if (fil.attr === "announceCombo") {
 					filters.push(FilterExpressionUtils.buildExpressionEquals("S_NAME", fil.value));
 				}
 				if (fil.attr === "hour") {
-					const filvalue = fil.value + 1;
-					/*if (FilterExpressionUtils.buildExpressionMoreEqual("A_START_HOUR", "A_FINISH_HOUR")){
-						if (FilterExpressionUtils.buildExpressionLess("A_START_HOUR", fil.value) && FilterExpressionUtils.buildExpressionLess("A_FINISH_HOUR", fil.value)){
-							filters.push(FilterExpressionUtils.buildExpressionLessEqual("A_START_HOUR", fil.value));
-							filters.push(FilterExpressionUtils.buildExpressionLessEqual("A_FINISH_HOUR", fil.value));
-						} else if (FilterExpressionUtils.buildExpressionMore("A_START_HOUR", fil.value) && FilterExpressionUtils.buildExpressionMore("A_FINISH_HOUR", fil.value)){
-							filters.push(FilterExpressionUtils.buildExpressionMoreEqual("A_START_HOUR", fil.value));
-							filters.push(FilterExpressionUtils.buildExpressionMoreEqual("A_FINISH_HOUR", fil.value));
-						}
-					} else {*/
-						filters.push(FilterExpressionUtils.buildExpressionLessEqual("A_START_HOUR", filvalue));
-						filters.push(FilterExpressionUtils.buildExpressionMoreEqual("A_FINISH_HOUR", fil.value));/*}*/
+					
+					/*dayfilters.push(FilterExpressionUtils.buildExpressionLessEqual("A_START_HOUR", "A_FINISH_HOUR"));	*/
+					dayfilters.push(FilterExpressionUtils.buildExpressionLessEqual("A_START_HOUR", fil.value));
+					dayfilters.push(FilterExpressionUtils.buildExpressionMoreEqual("A_FINISH_HOUR", fil.value));
+						if (dayfilters.length > 0){
+							day = dayfilters.reduce((exp1, exp2) => FilterExpressionUtils.buildComplexExpression(exp1, exp2, FilterExpressionUtils.OP_AND))
+						} else {null};
+					
+						/*nightbeforefilters.push(FilterExpressionUtils.buildExpressionMoreEqual("A_START_HOUR", "A_FINISH_HOUR"));*/
+						nightbeforefilters.push(FilterExpressionUtils.buildExpressionLessEqual("A_START_HOUR",fil.value));
+						nightbeforefilters.push(FilterExpressionUtils.buildExpressionMoreEqual("'24:00'", fil.value));
+						if (nightbeforefilters.length > 0){
+							nightbefore = nightbeforefilters.reduce((exp1, exp2) => FilterExpressionUtils.buildComplexExpression(exp1, exp2, FilterExpressionUtils.OP_AND))
+						} else {null};
+
+						/*nightafterfilters.push(FilterExpressionUtils.buildExpressionMoreEqual("A_START_HOUR", "A_FINISH_HOUR"));*/
+						nightafterfilters.push(FilterExpressionUtils.buildExpressionLessEqual("'00:00'", fil.value));
+						nightafterfilters.push(FilterExpressionUtils.buildExpressionMoreEqual("A_FINISH_HOUR", fil.value));
+						if (nightafterfilters.length > 0){
+							nightafter = nightafterfilters.reduce((exp1, exp2) => FilterExpressionUtils.buildComplexExpression(exp1, exp2, FilterExpressionUtils.OP_AND))
+						} else {null};
+
+						nightfilters.push(nightbefore);
+						nightfilters.push(nightafter);
+						if (nightfilters.length > 0){
+							night = nightfilters.reduce((exp1, exp2) => FilterExpressionUtils.buildComplexExpression(exp1, exp2, FilterExpressionUtils.OP_OR))
+						} else {null};
+					 
+					 hourfilters.push(day);
+					 hourfilters.push(night);
+					 if (hourfilters.length > 0){
+						hour = hourfilters.reduce((exp1, exp2) => FilterExpressionUtils.buildComplexExpression(exp1, exp2, FilterExpressionUtils.OP_OR))
+					 } else {null};
+
+					 filters.push(hour);
 				}
+				
 			} 
+
 		});
 
 		if (filters.length > 0) {
@@ -176,4 +211,5 @@ export class AnnouncesHomeComponent implements OnInit, AfterViewInit {
 		const [hours, minutes] = time.split(':');
 		return `${hours}:${minutes}`;
 	  }
+	  
 }

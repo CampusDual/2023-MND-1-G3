@@ -101,5 +101,5 @@ export class AnnouncesDetailComponent implements OnInit {
 		// Formatear el tiempo para mostrar solo horas y minutos
 		const [hours, minutes] = time.split(':');
 		return `${hours}:${minutes}`;
-	  }
+	  } 
 }
