@@ -52,7 +52,8 @@
                 <![CDATA[
                     WITH TEMPORAL AS (
                         SELECT
-                            A.*, S.S_NAME, U.NAME, U.SURNAME, U.EMAIL
+                            A.*, S.S_NAME, U.NAME, U.SURNAME, U.EMAIL,
+                            CASE WHEN A_START_HOUR < A_FINISH_HOUR THEN 'FALSE' ELSE 'TRUE' END AS multi_day
                         FROM ANNOUNCES A
                         INNER JOIN SERVICES S ON A.S_ID = S.S_ID
                         INNER JOIN TUSER U ON U.USER_ = A.USER_
