@@ -129,59 +129,55 @@ export class AnnouncesHomeComponent implements OnInit, AfterViewInit {
 	createFilter(values: Array<{ attr; value }>): Expression {
 		let filters: Array<Expression> = [];
 		let hourfilters: Array<Expression> = [];
-		let dayfilters: Array<Expression> = [];
-		let nightbeforefilters: Array<Expression> = [];
-		let nightafterfilters: Array<Expression> = [];
-		let nightfilters: Array<Expression> = [];
+		let differentDayFiltersStart: Array<Expression> = [];
+		let differentDayFiltersEnd: Array<Expression> = [];
 		let hour;
-		let day;
-		let nightbefore;
-		let nightafter;
-		let night;
 		values.forEach((fil) => {
 			if (fil.value) {
+				fil.value = fil.value.concat(':00');
 				if (fil.attr === "announceCombo") {
 					filters.push(FilterExpressionUtils.buildExpressionEquals("S_NAME", fil.value));
 				}
 				if (fil.attr === "hour") {
-					
-					/*dayfilters.push(FilterExpressionUtils.buildExpressionLessEqual("A_START_HOUR", "A_FINISH_HOUR"));	*/
-					dayfilters.push(FilterExpressionUtils.buildExpressionLessEqual("A_START_HOUR", fil.value));
-					dayfilters.push(FilterExpressionUtils.buildExpressionMoreEqual("A_FINISH_HOUR", fil.value));
-						if (dayfilters.length > 0){
-							day = dayfilters.reduce((exp1, exp2) => FilterExpressionUtils.buildComplexExpression(exp1, exp2, FilterExpressionUtils.OP_AND))
-						} else {null};
-					
-						/*nightbeforefilters.push(FilterExpressionUtils.buildExpressionMoreEqual("A_START_HOUR", "A_FINISH_HOUR"));*/
-						nightbeforefilters.push(FilterExpressionUtils.buildExpressionLessEqual("A_START_HOUR",fil.value));
-						nightbeforefilters.push(FilterExpressionUtils.buildExpressionMoreEqual("'24:00'", fil.value));
-						if (nightbeforefilters.length > 0){
-							nightbefore = nightbeforefilters.reduce((exp1, exp2) => FilterExpressionUtils.buildComplexExpression(exp1, exp2, FilterExpressionUtils.OP_AND))
-						} else {null};
-
-						/*nightafterfilters.push(FilterExpressionUtils.buildExpressionMoreEqual("A_START_HOUR", "A_FINISH_HOUR"));*/
-						nightafterfilters.push(FilterExpressionUtils.buildExpressionLessEqual("'00:00'", fil.value));
-						nightafterfilters.push(FilterExpressionUtils.buildExpressionMoreEqual("A_FINISH_HOUR", fil.value));
-						if (nightafterfilters.length > 0){
-							nightafter = nightafterfilters.reduce((exp1, exp2) => FilterExpressionUtils.buildComplexExpression(exp1, exp2, FilterExpressionUtils.OP_AND))
-						} else {null};
-
-						nightfilters.push(nightbefore);
-						nightfilters.push(nightafter);
-						if (nightfilters.length > 0){
-							night = nightfilters.reduce((exp1, exp2) => FilterExpressionUtils.buildComplexExpression(exp1, exp2, FilterExpressionUtils.OP_OR))
-						} else {null};
-					 
-					 hourfilters.push(day);
-					 hourfilters.push(night);
-					 if (hourfilters.length > 0){
-						hour = hourfilters.reduce((exp1, exp2) => FilterExpressionUtils.buildComplexExpression(exp1, exp2, FilterExpressionUtils.OP_OR))
-					 } else {null};
-
-					 filters.push(hour);
-				}
+					const sameDayFilters = [];
 				
-			} 
+					sameDayFilters.push(FilterExpressionUtils.buildExpressionLessEqual("A_START_HOUR", fil.value));
+					sameDayFilters.push(FilterExpressionUtils.buildExpressionMoreEqual("A_FINISH_HOUR", fil.value));
+					sameDayFilters.push(FilterExpressionUtils.buildExpressionLike("MULTI_DAY", "FALSE"))
+				
+					const sameDay = sameDayFilters.length > 0 ?
+						sameDayFilters.reduce((exp1, exp2) => FilterExpressionUtils.buildComplexExpression(exp1, exp2, FilterExpressionUtils.OP_AND)) :
+						null;
+					
+					hourfilters.push(sameDay);
+					
+					
+					differentDayFiltersStart.push(FilterExpressionUtils.buildExpressionLessEqual("A_START_HOUR", fil.value))
+					differentDayFiltersStart.push(FilterExpressionUtils.buildExpressionLike("MULTI_DAY", "TRUE"))
+					
+					const differentDayStart = differentDayFiltersStart.length > 0 ?
+					differentDayFiltersStart.reduce((exp1, exp2) => FilterExpressionUtils.buildComplexExpression(exp1, exp2, FilterExpressionUtils.OP_AND)) :
+					null;
+
+					hourfilters.push(differentDayStart);
+
+					differentDayFiltersEnd.push(FilterExpressionUtils.buildExpressionMoreEqual("A_FINISH_HOUR", fil.value))
+					differentDayFiltersEnd.push(FilterExpressionUtils.buildExpressionLike("MULTI_DAY", "TRUE"))
+					
+					const differentDayEnd = differentDayFiltersEnd.length > 0 ?
+					differentDayFiltersEnd.reduce((exp1, exp2) => FilterExpressionUtils.buildComplexExpression(exp1, exp2, FilterExpressionUtils.OP_AND)) :
+					null;
+
+					hourfilters.push(differentDayEnd);		
+					
+					if (hourfilters.length > 0){
+						hour = hourfilters.reduce((exp1, exp2) => FilterExpressionUtils.buildComplexExpression(exp1, exp2, FilterExpressionUtils.OP_OR))
+					};
+					
+					filters.push(hour);
+				
+				} 
+			}
 
 		});
 
