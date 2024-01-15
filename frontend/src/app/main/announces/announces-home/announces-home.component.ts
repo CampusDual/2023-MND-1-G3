@@ -134,11 +134,11 @@ export class AnnouncesHomeComponent implements OnInit, AfterViewInit {
 		let hour;
 		values.forEach((fil) => {
 			if (fil.value) {
-				fil.value = fil.value.concat(':00');
 				if (fil.attr === "announceCombo") {
 					filters.push(FilterExpressionUtils.buildExpressionEquals("S_NAME", fil.value));
 				}
 				if (fil.attr === "hour") {
+					fil.value = fil.value.concat(':00');
 					const sameDayFilters = [];
 				
 					sameDayFilters.push(FilterExpressionUtils.buildExpressionLessEqual("A_START_HOUR", fil.value));
