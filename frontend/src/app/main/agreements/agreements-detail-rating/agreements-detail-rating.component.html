@@ -1,0 +1,43 @@
+<div class="form-rating">
+    <o-form 
+        #agreementFormRating
+        entity="agreement"
+        service="agreements"
+        keys="AG_ID"
+        undo-button="no"
+		editable-detail="no"
+        keys-sql-types="INTEGER"
+        show-header-navigation="yes"
+        label-header="SERVICE_RATING"
+        label-header-align="start"
+        (onDataLoaded)="onDataLoaded($event)">
+        <div class="form-group">
+			<o-integer-input attr="AG_ID" hidden></o-integer-input>		        
+            <o-integer-input #AG_RATING attr="AG_RATING" read-only="yes" rows="0" label="YOUR_RATING" hidden></o-integer-input>
+            <div class="rating-label" fxFlex hidden>{{ "YOUR_RATING" | oTranslate }}</div>
+            <!--<o-slider #AG_RATING attr="AG_RATING" label="" read-only="no" color="primary"  max="5" min="1" thumb-label="true" tick-interval="auto"></o-slider>-->
+		</div>
+        <div class="rating-number" fxFlex hidden>{{ ag_rating }}</div>
+        <!--<div class="rating-stars">
+            <o-button-toggle-group attr="togglegroup" layout="row" multiple="no" layout-padding>
+                <o-button-toggle attr="toggle1" value="1" icon="star" (click)="setValue(AG_RATING, 1)"></o-button-toggle>
+                <o-button-toggle attr="toggle2" value="2" icon="star"></o-button-toggle>
+                <o-button-toggle attr="toggle3" value="3" icon="star"></o-button-toggle>
+                <o-button-toggle attr="toggle4" value="4" icon="star"></o-button-toggle>
+                <o-button-toggle attr="toggle5" value="5" icon="star"></o-button-toggle>
+            </o-button-toggle-group>
+        </div>-->
+        <div class="rating-stars">
+                <o-button *ngIf="ag_rating >= 1" attr="toggle1" type="FAB" icon="star" layout-padding (click)="setValue(AG_RATING, 1)" color="primary" label=""></o-button>
+                <o-button *ngIf="ag_rating < 1 || !ag_rating" attr="toggle1" type="FAB" icon="star" layout-padding (click)="setValue(AG_RATING, 1)" label=""></o-button>
+                <o-button *ngIf="ag_rating >= 2" attr="toggle2" type="FAB" icon="star" layout-padding (click)="setValue(AG_RATING, 2)" color="primary" label=""></o-button>
+                <o-button *ngIf="ag_rating < 2 || !ag_rating" attr="toggle2" type="FAB" icon="star" layout-padding (click)="setValue(AG_RATING, 2)" label=""></o-button>
+                <o-button *ngIf="ag_rating >= 3" attr="toggle3" type="FAB" icon="star" layout-padding (click)="setValue(AG_RATING, 3)" color="primary" label=""></o-button>
+                <o-button *ngIf="ag_rating < 3 || !ag_rating" attr="toggle3" type="FAB" icon="star" layout-padding (click)="setValue(AG_RATING, 3)" label=""></o-button>
+                <o-button *ngIf="ag_rating >= 4" attr="toggle4" type="FAB" icon="star" layout-padding (click)="setValue(AG_RATING, 4)" color="primary" label=""></o-button>
+                <o-button *ngIf="ag_rating < 4 || !ag_rating" attr="toggle4" type="FAB" icon="star" layout-padding (click)="setValue(AG_RATING, 4)" label=""></o-button>
+                <o-button *ngIf="ag_rating >= 5" attr="toggle5" type="FAB" icon="star" layout-padding (click)="setValue(AG_RATING, 5)" color="primary" label=""></o-button>
+                <o-button *ngIf="ag_rating < 5 || !ag_rating" attr="toggle5" type="FAB" icon="star" layout-padding (click)="setValue(AG_RATING, 5)" label=""></o-button>
+        </div>
+    </o-form>
+</div>

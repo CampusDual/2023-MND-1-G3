@@ -34,10 +34,10 @@
             <Sentence>
                 <![CDATA[
                  WITH TEMPORAL AS (
-                    select max(ag_id) as ag_id, ag.c_id
+                    select max(ag_id) as ag_id, ag.c_id, c.c_end_datetime
                     from agreements ag
                     inner join conversations c on ag.c_id = c.c_id
-                    group by ag.c_id
+                    group by ag.c_id, c.c_end_datetime
                     )
                     SELECT #COLUMNS# FROM TEMPORAL t
                     INNER JOIN AGREEMENTS agr ON agr.ag_id = t.ag_id

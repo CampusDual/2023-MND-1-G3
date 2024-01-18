@@ -108,5 +108,7 @@
 	"CATEGORYSELECT": "Selecione una categoría",
 	"COUNT": "Numero de trabajos finalizados",
 	"TOTAL": "Total de ingresos",
-	"HOUR": "Hora"
+	"HOUR": "Hora",
+	"SERVICE_RATING": "Valoración del servicio",
+	"YOUR_RATING": "Tu valoración:"
 }

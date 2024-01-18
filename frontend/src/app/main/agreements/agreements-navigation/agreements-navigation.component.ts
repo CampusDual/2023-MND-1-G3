@@ -1,7 +1,9 @@
 import { Component, Input, OnInit, AfterContentInit, Injector } from "@angular/core";
+import { MatDialog } from "@angular/material";
 import { ActivatedRoute, Router } from "@angular/router";
 import { OntimizeService } from "ontimize-web-ngx";
 import { getLoggedUser } from "src/app/shared/utils";
+import { AgreementsDetailRatingComponent } from "../agreements-detail-rating/agreements-detail-rating.component";
 
 @Component({
 	selector: "app-agreements-navigation",
@@ -19,8 +21,9 @@ export class AgreementsNavigationComponent implements OnInit, AfterContentInit {
 	accepted: any;
 	isClient: boolean = true;
 	dataIsLoaded: boolean = false;
+	workDone: any;
 
-	constructor(private router: Router, private route: ActivatedRoute, protected injector: Injector) {
+	constructor(protected dialog: MatDialog, private router: Router, private route: ActivatedRoute, protected injector: Injector) {
 		this.service = this.injector.get(OntimizeService);
 	}
 
@@ -40,6 +43,7 @@ export class AgreementsNavigationComponent implements OnInit, AfterContentInit {
 		this.accepted = event.AG_ACCEPTED;
 		this.agreement = event.AG_ID;
 		this.dataIsLoaded = event;
+		this.workDone = event.C_END_DATETIME;
 	}
 
 	public openAgreementFormNew() {
@@ -48,8 +52,19 @@ export class AgreementsNavigationComponent implements OnInit, AfterContentInit {
 	public openAgreementFormDetail() {
 		this.router.navigateByUrl(`main/agreements/${this.ag_id}?isdetail=true`);
 	}
+	public openAgreementFormDetailRating() {
+		this.router.navigateByUrl(`main/agreements/${this.ag_id}/rating?isdetail=true`)
+	}
 	public openAgreementFormDetailClient() {
 		this.router.navigateByUrl(`main/agreements/${this.ag_id}/client?isdetail=true`);
+	}
+
+	public openDetail(data: any): void {
+		this.dialog.open(AgreementsDetailRatingComponent, {
+			height: "300px",
+			width: "600px",
+			data: data
+		});
 	}
 
 	ngAfterContentInit() {}

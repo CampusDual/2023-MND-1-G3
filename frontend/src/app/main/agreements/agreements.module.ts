@@ -7,6 +7,7 @@ import { SharedModule } from "src/app/shared/shared.module";
 import { AgreementsDetailComponent } from "./agreements-detail/agreements-detail.component";
 import { AgreementsNavigationComponent } from "./agreements-navigation/agreements-navigation.component";
 import { AgreementsDetailClientComponent } from "./agreements-detail-client/agreements-detail-client.component";
+import { AgreementsDetailRatingComponent } from './agreements-detail-rating/agreements-detail-rating.component';
 
 @NgModule({
 	declarations: [
@@ -14,6 +15,7 @@ import { AgreementsDetailClientComponent } from "./agreements-detail-client/agre
 		AgreementsNavigationComponent,
 		AgreementsDetailComponent,
 		AgreementsDetailClientComponent,
+		AgreementsDetailRatingComponent,
 	],
 	imports: [CommonModule, AgreementsRoutingModule, OntimizeWebModule, SharedModule],
 	exports: [

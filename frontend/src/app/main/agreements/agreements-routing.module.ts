@@ -4,6 +4,7 @@ import { AgreementsNewComponent } from "./agreements-new/agreements-new.componen
 import { AgreementsDetailComponent } from "./agreements-detail/agreements-detail.component";
 import { AgreementsNavigationComponent } from "./agreements-navigation/agreements-navigation.component";
 import { AgreementsDetailClientComponent } from "./agreements-detail-client/agreements-detail-client.component";
+import { AgreementsDetailRatingComponent } from "./agreements-detail-rating/agreements-detail-rating.component";
 
 const routes: Routes = [
 	{
@@ -21,6 +22,10 @@ const routes: Routes = [
 	{
 		path: ":AG_ID/client",
 		component: AgreementsDetailClientComponent,
+	},
+	{
+		path: ":AG_ID/rating",
+		component: AgreementsDetailRatingComponent,
 	},
 ];
 

@@ -2,7 +2,7 @@
 	service="agreements"
 	entity="agreementLastId"
 	parent-keys="C_ID"
-	columns="AG_ID;AG_ACCEPTED;C_ID"
+	columns="AG_ID;AG_ACCEPTED;C_ID;C_END_DATETIME"
 	show-header="no"
 	(onDataLoaded)="onDataLoaded($event)">
 	<o-integer-input attr="C_ID" hidden></o-integer-input>
@@ -27,7 +27,7 @@
 	</div>
 
 	<ng-template #sendOfferProfessionalButton>
-		<div *ngIf="!viewOfferClient && dataIsLoaded; else viewOfferClientButton">
+		<div *ngIf="!viewOfferClient && dataIsLoaded; else ratingButton">
 			<button
 				class="btn-style"
 				color="primary"
@@ -37,6 +37,22 @@
 				(click)="openAgreementFormDetail(data)">
 				<span class="mat-button-wrapper">
 					<span class="ng-star-inserted">{{ "AGREEMENT_DETAIL" | oTranslate }}</span>
+				</span>
+			</button>
+		</div>
+	</ng-template>
+	<ng-template #ratingButton>
+		<div *ngIf="agreement && workDone; else viewOfferClientButton">
+			<button
+				class="btn-style"
+				color="primary"
+				mat-stroked-button=""
+				type="button"
+				ng-reflect-color="primary"
+				(click)="openAgreementFormDetailRating(data)"
+				>
+				<span class="mat-button-wrapper">
+					<span class="ng-star-inserted">{{ "SERVICE_RATING" | oTranslate }}</span>
 				</span>
 			</button>
 		</div>

@@ -108,5 +108,7 @@
 	"CATEGORYSELECT": "Select a category",
 	"COUNT": "Number of finished works",
 	"TOTAL": "Total revenues",
-	"HOUR": "Hour"
+	"HOUR": "Hour",
+	"SERVICE_RATING": "Service rating",
+	"YOUR_RATING": "Your rating:"
 }
